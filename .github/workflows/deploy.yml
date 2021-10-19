@@ -19,7 +19,7 @@ jobs:
           github_token: ${{ secrets.APP_TOKEN }}
           workflow_file_name: deploy.yml
           ref: master
-          inputs: '{this is spartaaaaaaaaaa}'
+          inputs: '{"name":"John"}'
       - name: Deploy Web App1
         run: |
           echo "Deploy Web App"
