@@ -18,6 +18,7 @@ jobs:
           repo: demo-web-api
           github_token: ${{ secrets.APP_TOKEN }}
           workflow_file_name: deploy.yml
+          ref: master
       - name: Deploy Web App1
         run: |
           echo "Deploy Web App"
