@@ -1,6 +1,6 @@
 name: Deploy
 on:
-  pull_request:
+  push:
     branches:
       - master
 jobs:
@@ -19,8 +19,15 @@ jobs:
           github_token: ${{ secrets.APP_TOKEN }}
           workflow_file_name: deploy.yml
           ref: master
-          inputs: '{"name":${{ github.base_ref }},"github.sha":${{ github.sha }},"github.head_ref":${{ github.head_ref }}}'
+          inputs: '{"name": "fzxc"}'
       - name: Deploy Web App
         run: |
-          echo "Deploy Web App"
+          echo "name la ${{ github.ref }}!"
+          echo "1 la ${{ github.action }}!"
+          echo "2 la ${{ github.base_ref }}!"
+          echo "3 la ${{ github.head_ref }}!"
+          echo "4 la ${{ github.run_id }}!"
+          echo "5 la ${{ github.run_number }}!"
+          echo "6 la ${{ github.pull_request.head.sha }}!"
+          echo "7 la ${{ github.sha }}!"
           sleep 10s
