@@ -28,6 +28,6 @@ jobs:
           echo "3 la ${{ github.head_ref }}!"
           echo "4 la ${{ github.run_id }}!"
           echo "5 la ${{ github.run_number }}!"
-          echo "6 la ${{ github.pull_request.head.sha }}!"
+          echo "6 la ${{ github.event.pull_request.head.sha }}!"
           echo "7 la ${{ github.sha }}!"
           sleep 10s
