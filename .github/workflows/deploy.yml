@@ -19,7 +19,7 @@ jobs:
           github_token: ${{ secrets.APP_TOKEN }}
           workflow_file_name: deploy.yml
           ref: master
-          inputs: '{"name": "${{ github.head_ref }}"}'
+          inputs: '{"name": "${{ github.sha }}"}'
       - name: Deploy Web App
         run: |
           echo "name la ${{ github.ref }}!"
