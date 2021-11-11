@@ -10,8 +10,7 @@ jobs:
     steps:
       - name: Build Web App
         run: |
-          echo "Build Web App"
-          sleep 10s
+          echo "Build Web App1"
       - uses: convictional/trigger-workflow-and-wait@v1.3.0
         with:
           owner: xHNxMrThanh
@@ -19,15 +18,14 @@ jobs:
           github_token: ${{ secrets.APP_TOKEN }}
           workflow_file_name: deploy.yml
           ref: master
-          inputs: '{"name": "${{ github.sha }}"}'
-      - name: Deploy Web App
-        run: |
-          echo "name la ${{ github.ref }}!"
-          echo "1 la ${{ github.action }}!"
-          echo "2 la ${{ github.base_ref }}!"
-          echo "3 la ${{ github.head_ref }}!"
-          echo "4 la ${{ github.run_id }}!"
-          echo "5 la ${{ github.run_number }}!"
-          echo "6 la ${{ github.pull_request.head.sha }}!"
-          echo "7 la ${{ github.sha }}!"
-          sleep 10s
+          inputs: '{"name": "${{ github.ref }}","commitId": "${{ github.event.pull_request.head.sha }}"}'
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: 1
+          body: |
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
+            - Created by [create-or-update-comment][1]
+            [1]: https://github.com/peter-evans/create-or-update-comment
+          reactions: '+1'
