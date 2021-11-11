@@ -37,4 +37,4 @@ jobs:
       # Required sender full name (address can be skipped):
           from: Thanh Phan
           secure: true
-          body: Build job completed successfully!
+          body: Build job completed successfully!!!
