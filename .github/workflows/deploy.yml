@@ -19,23 +19,14 @@ jobs:
           workflow_file_name: deploy.yml
           ref: master
           inputs: '{"name": "${{ github.ref }}","commitId": "${{ github.event.pull_request.head.sha }}"}'
-      - name: Send mail
-        uses: dawidd6/action-send-mail@v3
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v1
         with:
-      # Required mail server address:
-          server_address: smtp.gmail.com
-      # Required mail server port:
-          server_port: 465
-      # Optional (recommended): mail server username:
-          username: ${{ secrets.EMAIL_ACCOUNT }}
-      # Optional (recommended) mail server password:
-          password: ${{ secrets.EMAIL_PASSWORD }}
-      # Required mail subject:
-          subject: Github Actions job result
-      # Required recipients' addresses:
-          to: thanh.phanduy@nttdata.com
-      # Required sender full name (address can be skipped):
-          from: Thanh Phan
-          secure: true
-          body: Build job completed successfully!!!!!
-          cc: rodrigo.sanjuan.de.la.guardia@nttdata.com
+          issue-number: 1
+          body: |
+              This is a multi-line test comment
+              - With GitHub **Markdown** :sparkles:
+              - Created by [create-or-update-comment][1]
+
+              [1]: https://github.com/peter-evans/create-or-update-comment
+            reactions: '+1'
