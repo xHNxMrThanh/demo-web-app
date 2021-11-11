@@ -20,14 +20,20 @@ jobs:
           workflow_file_name: deploy.yml
           ref: master
           inputs: '{"name": "${{ github.ref }}","commitId": "${{ github.event.pull_request.head.sha }}"}'
-      - name: Deploy Web App
-        run: |
-          echo "name la ${{ github.ref }}!"
-          echo "1 la ${{ github.action }}!"
-          echo "2 la ${{ github.base_ref }}!"
-          echo "3 la ${{ github.head_ref }}!"
-          echo "4 la ${{ github.run_id }}!"
-          echo "5 la ${{ github.run_number }}!"
-          echo "6 la ${{ github.event.pull_request.head.sha }}!"
-          echo "7 la ${{ github.sha }}!"
-          sleep 10s
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+      # Required mail server address:
+          server_address: smtp.office365.com
+      # Required mail server port:
+          server_port: 587
+      # Optional (recommended): mail server username:
+          username: xhnxmrthanhchannel@gmail.com
+      # Optional (recommended) mail server password:
+          password: R3c0v3ry@@
+      # Required mail subject:
+          subject: Github Actions job result
+      # Required recipients' addresses:
+          to: thanh.phanduy@nttdata.com
+      # Required sender full name (address can be skipped):
+          from: Thanh Phan
