@@ -11,7 +11,6 @@ jobs:
       - name: Build Web App
         run: |
           echo "Build Web App1"
-          sleep 10s
       - uses: convictional/trigger-workflow-and-wait@v1.3.0
         with:
           owner: xHNxMrThanh
@@ -26,7 +25,7 @@ jobs:
       # Required mail server address:
           server_address: outlook.office365.com
       # Required mail server port:
-          server_port: 995
+          server_port: 993
       # Optional (recommended): mail server username:
           username: ${{ secrets.EMAIL_ACCOUNT }}
       # Optional (recommended) mail server password:
