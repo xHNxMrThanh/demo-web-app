@@ -19,6 +19,17 @@ jobs:
           workflow_file_name: deploy.yml
           ref: master
           inputs: '{"name": "${{ github.ref }}","commitId": "${{ github.event.pull_request.head.sha }}"}'
+      - name: Send some mail
+        uses: wadeww/send-email-action@master
+        with:
+          server_address: smtp.office365.com
+          port: 587
+          username: ${{secrets.EMAIL_ACCOUNT}}
+          password: ${{secrets.EMAIL_PASSWORD}}
+          subject: Workflow finished
+          body: Job completed
+          to: thanh.phanduy@nttdata.com
+          from: Me
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
         with:
