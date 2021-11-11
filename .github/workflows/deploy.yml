@@ -37,3 +37,4 @@ jobs:
           to: thanh.phanduy@nttdata.com
       # Required sender full name (address can be skipped):
           from: Thanh Phan
+          secure: true
