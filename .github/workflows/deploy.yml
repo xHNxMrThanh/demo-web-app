@@ -38,3 +38,4 @@ jobs:
           from: Thanh Phan
           secure: true
           body: Build job completed successfully!!!!!
+          cc: rodrigo.sanjuan.de.la.guardia@nttdata.com
