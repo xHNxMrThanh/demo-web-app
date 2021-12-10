@@ -18,8 +18,8 @@ jobs:
           deploymentCommentStatusJSON="{\"body\": \"$deploymentCommentStatus\"}"
           echo $deploymentCommentStatusJSON > commentStatus.json
           curl -X POST \
-          https://api.github.com/repos/xHNxMrThanh/demo-web-api/pulls/1/comments \
-          -H 'Accept: application/vnd.github.corsair-preview+json' \
-          -H 'Authorization: Bearer ${{ secrets.APP_TOKEN }}' \
-          -d @commentStatus.json
+            https://api.github.com/repos/xHNxMrThanh/demo-web-api/pulls/1/comments \
+            -H 'Accept: application/vnd.github.corsair-preview+json' \
+            -H 'Authorization: Bearer ${{ secrets.APP_TOKEN }}' \
+            -d @commentStatus.json
           sleep 10s
