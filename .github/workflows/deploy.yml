@@ -22,12 +22,16 @@ jobs:
           inputs: '{"name": "${{ github.sha }}"}'
       - name: Deploy Web App
         run: |
-          echo "name la ${{ github.ref }}!"
-          echo "1 la ${{ github.action }}!"
-          echo "2 la ${{ github.base_ref }}!"
-          echo "3 la ${{ github.head_ref }}!"
-          echo "4 la ${{ github.run_id }}!"
-          echo "5 la ${{ github.run_number }}!"
-          echo "6 la ${{ github.pull_request.head.sha }}!"
-          echo "7 la ${{ github.sha }}!"
+          deploymentCommentStatus="<h1>Deployment status</h1><table><tr><td style=\"vertical-align: middle;border: none;\"><img src=\"https://icagr.es/Content/themes/icagr/imagenes/ajax-loader-t.gif\" width=\"20\" height=\"20\" /> </td><td style=\"vertical-align: middle;\"><b>Deploying to ${{ github.base_ref }}...</b></td><td style=\"vertical-align: middle;\"><a href=\"https://github.com/${{ github.repository }}/actions/runs/$GITHUB_RUN_ID\">View Details</a></td></tr></table>"
+          echo $deploymentCommentStatus
+          deploymentCommentStatus=${deploymentCommentStatus//$'\n'/\\r\\n}
+          deploymentCommentStatus=${deploymentCommentStatus//\"/\\\"}
+          echo $deploymentCommentStatus
+          deploymentCommentStatusJSON="{\"body\": \"$deploymentCommentStatus\"}"
+          echo $deploymentCommentStatusJSON > commentStatus.json
+          curl -X POST \
+          https://api.github.com/repos/${{ github.repository }}/issues/$pull_number/comments \
+          -H 'Accept: application/vnd.github.corsair-preview+json' \
+          -H 'Authorization: Bearer ${{ secrets.APP_TOKEN }}' \
+          -d @commentStatus.json
           sleep 10s
