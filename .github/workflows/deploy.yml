@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Deploy Web App
         run: |
-          deploymentCommentStatus="<h1>Deployment status</h1><table><tr><td style=\"vertical-align: middle;border: none;\"><img src=\"https://icagr.es/Content/themes/icagr/imagenes/ajax-loader-t.gif\" width=\"20\" height=\"20\" /> </td><td style=\"vertical-align: middle;\"><b>Deploying to ${{ github.base_ref }}...</b></td><td style=\"vertical-align: middle;\"><a href=\"https://github.com/${{ github.repository }}/actions/runs/$GITHUB_RUN_ID\">View Details</a></td></tr></table>"
+          deploymentCommentStatus="<h1>Deployment status</h1><table><tr><td style=\"vertical-align: middle;border: none;\"><img src=\"https://icagr.es/Content/themes/icagr/imagenes/ajax-loader-t.gif\" width=\"20\" height=\"20\" /> </td><td style=\"vertical-align: middle;\"><b>Deploying to</b></td><td style=\"vertical-align: middle;\"><a href=\"https://github.com">View Details</a></td></tr></table>"
           echo $deploymentCommentStatus
           deploymentCommentStatus=${deploymentCommentStatus//$'\n'/\\r\\n}
           deploymentCommentStatus=${deploymentCommentStatus//\"/\\\"}
