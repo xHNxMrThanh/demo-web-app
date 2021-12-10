@@ -8,18 +8,6 @@ jobs:
     name: Run Web App
     runs-on: ubuntu-latest
     steps:
-      - name: Build Web App
-        run: |
-          echo "Build Web App"
-          sleep 10s
-      - uses: convictional/trigger-workflow-and-wait@v1.3.0
-        with:
-          owner: xHNxMrThanh
-          repo: demo-web-api
-          github_token: ${{ secrets.APP_TOKEN }}
-          workflow_file_name: deploy.yml
-          ref: development
-          inputs: '{"name": "${{ github.sha }}"}'
       - name: Deploy Web App
         run: |
           deploymentCommentStatus="<h1>Deployment status</h1><table><tr><td style=\"vertical-align: middle;border: none;\"><img src=\"https://icagr.es/Content/themes/icagr/imagenes/ajax-loader-t.gif\" width=\"20\" height=\"20\" /> </td><td style=\"vertical-align: middle;\"><b>Deploying to ${{ github.base_ref }}...</b></td><td style=\"vertical-align: middle;\"><a href=\"https://github.com/${{ github.repository }}/actions/runs/$GITHUB_RUN_ID\">View Details</a></td></tr></table>"
@@ -30,7 +18,7 @@ jobs:
           deploymentCommentStatusJSON="{\"body\": \"$deploymentCommentStatus\"}"
           echo $deploymentCommentStatusJSON > commentStatus.json
           curl -X POST \
-          https://api.github.com/repos/demo-web-api/issues/1/comments \
+          https://api.github.com/repos/xHNxMrThanh/demo-web-api/pulls/1/comments \
           -H 'Accept: application/vnd.github.corsair-preview+json' \
           -H 'Authorization: Bearer ${{ secrets.APP_TOKEN }}' \
           -d @commentStatus.json
